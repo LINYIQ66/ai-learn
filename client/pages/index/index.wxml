@@ -1,0 +1,48 @@
+<view class="page">
+  <view class="header">
+    <view class="header-top">
+      <view class="user-info" bindtap="goProfile">
+        <image class="avatar" src="{{userInfo.avatar || '/images/default-avatar.png'}}" mode="aspectFill" />
+        <text class="nickname">{{userInfo.nickname || '微信用户'}}</text>
+      </view>
+      <view class="points-badge">⭐ {{points || 0}}</view>
+    </view>
+    <text class="greeting">{{greeting}}</text>
+  </view>
+
+  <view class="quick-actions">
+    <button class="action-btn signin-btn" bindtap="doSignin" disabled="{{signedToday}}">
+      <text class="action-icon">{{signedToday ? '✅' : '📅'}}</text><text>{{signedToday ? '已签到' : '每日签到'}}</text>
+    </button>
+    <view class="action-btn" bindtap="goLeaderboard">
+      <text class="action-icon">🏆</text><text>排行榜</text>
+    </view>
+  </view>
+
+  <view class="section-title">📚 学习课程</view>
+  <view wx:if="{{loading}}" class="loading-wrap"><text>加载中...</text></view>
+  <view wx:elif="{{courses.length === 0}}" class="empty-state"><text class="icon">📭</text><text class="text">暂无课程</text></view>
+
+  <view wx:else class="course-list">
+    <view class="course-card" wx:for="{{courses}}" wx:key="id" bindtap="goCourseDetail" data-id="{{item.id}}">
+      <view class="card-row">
+        <view class="card-cover">{{getCoverEmoji(item.id)}}</view>
+        <view class="card-info">
+          <view class="card-title">{{item.title}}</view>
+          <view class="card-desc">{{item.description || '暂无简介'}}</view>
+          <view class="card-tags">
+            <text class="tag tag-{{item.category}}">{{getCategoryTag(item.category)}}</text>
+            <text class="tag tag-lessons">{{item.total_lessons || 0}}节课</text>
+          </view>
+        </view>
+      </view>
+      <view class="progress-bar" wx:if="{{item.total_lessons > 0}}">
+        <view class="fill" style="width: {{(item.completed_lessons || 0) / item.total_lessons * 100}}%"></view>
+      </view>
+      <view class="progress-info" wx:if="{{item.total_lessons > 0}}">
+        <text>{{item.completed_lessons || 0}}/{{item.total_lessons}} 已完成</text>
+        <text class="go-btn">{{item.completed_lessons > 0 ? '继续学习 →' : '开始学习 →'}}</text>
+      </view>
+    </view>
+  </view>
+</view>

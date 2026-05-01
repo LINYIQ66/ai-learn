@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/course-detail/course-detail",
+    "pages/lesson/lesson",
+    "pages/quiz/quiz",
+    "pages/leaderboard/leaderboard",
+    "pages/profile/profile",
+    "pages/points/points",
+    "pages/rewards/rewards",
+    "pages/invitations/invitations",
+    "pages/messages/messages"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#4F46E5",
+    "navigationBarTitleText": "AI 学习",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F5F5F7"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#4F46E5",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "学习",
+        "iconPath": "images/tab-learn.png",
+        "selectedIconPath": "images/tab-learn-active.png"
+      },
+      {
+        "pagePath": "pages/leaderboard/leaderboard",
+        "text": "排行",
+        "iconPath": "images/tab-rank.png",
+        "selectedIconPath": "images/tab-rank-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/tab-me.png",
+        "selectedIconPath": "images/tab-me-active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

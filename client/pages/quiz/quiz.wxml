@@ -1,0 +1,22 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="loading-wrap"><text>加载中...</text></view>
+  <view wx:elif="{{quizzes.length === 0}}" class="empty-state"><text>暂无题目</text></view>
+  <view wx:else class="content">
+    <view class="quiz-item" wx:for="{{quizzes}}" wx:key="id">
+      <view class="question">{{index + 1}}. {{item.question}}</view>
+      <view class="options">
+        <view class="option {{answers[item.id] === item.options[optIdx].label ? 'selected' : ''}} {{submitted && item.options[optIdx].label === item.correct_answer ? 'correct' : ''}}" 
+              wx:for="{{item.options}}" wx:for-item="opt" wx:for-index="optIdx" wx:key="label"
+              bindtap="selectAnswer" data-quiz-id="{{item.id}}" data-answer="{{opt.label}}">
+          <text class="label">{{opt.label}}</text><text>{{opt.text}}</text>
+        </view>
+      </view>
+    </view>
+    <button class="btn-primary" bindtap="submitAnswers" wx:if="{{!submitted}}">提交答案</button>
+    <view wx:if="{{result}}" class="result">
+      <view class="score">得分: {{result.score}}分</view>
+      <view class="detail">正确 {{result.correct_count}}/{{result.total_questions}} | +{{result.points_earned}}积分</view>
+      <button class="btn-outline" bindtap="goBack">返回</button>
+    </view>
+  </view>
+</view>

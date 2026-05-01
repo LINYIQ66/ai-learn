@@ -1,0 +1,14 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="loading-wrap"><text>加载中...</text></view>
+  <view wx:elif="{{invitations.length === 0}}" class="empty-state"><text>暂无学习小组</text></view>
+  <view wx:else class="list">
+    <view class="card" wx:for="{{invitations}}" wx:key="id">
+      <text class="card-title">{{item.title}}</text>
+      <text class="card-desc">{{item.description || ''}}</text>
+      <view class="card-footer">
+        <text>{{item.member_count || 0}}/{{item.max_members || 10}}人</text>
+        <button class="join-btn" bindtap="join" data-id="{{item.id}}">加入</button>
+      </view>
+    </view>
+  </view>
+</view>

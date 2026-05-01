@@ -1,0 +1,14 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="loading-wrap"><text>加载中...</text></view>
+  <view wx:elif="{{messages.length === 0}}" class="empty-state"><text class="icon">📭</text><text>暂无消息</text></view>
+  <view wx:else class="msg-list">
+    <view class="msg-item" wx:for="{{messages}}" wx:key="id">
+      <image class="msg-avatar" src="{{item.avatar || '/images/default-avatar.png'}}" mode="aspectFill" />
+      <view class="msg-info">
+        <view class="msg-header"><text class="msg-name">{{item.nickname || '微信用户'}}</text><text class="msg-time">{{item.created_at}}</text></view>
+        <text class="msg-content">{{item.content}}</text>
+      </view>
+      <view wx:if="{{!item.is_read}}" class="unread-dot"></view>
+    </view>
+  </view>
+</view>

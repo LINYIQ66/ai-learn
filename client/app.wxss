@@ -1,0 +1,154 @@
+/* 全局样式 */
+page {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+  background-color: #F5F5F7;
+  color: #1a1a2e;
+  font-size: 28rpx;
+  line-height: 1.6;
+}
+
+/* 通用容器 */
+.container {
+  padding: 20rpx 30rpx;
+}
+
+/* 课程卡片 */
+.course-card {
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.05);
+}
+
+.course-card .card-header {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.course-card .card-cover {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 16rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48rpx;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.course-card .card-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 8rpx;
+}
+
+.course-card .card-desc {
+  font-size: 24rpx;
+  color: #999;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.course-card .progress-bar {
+  margin-top: 20rpx;
+  height: 8rpx;
+  background: #f0f0f0;
+  border-radius: 4rpx;
+  overflow: hidden;
+}
+
+.course-card .progress-bar .fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4F46E5, #7C3AED);
+  border-radius: 4rpx;
+  transition: width 0.3s;
+}
+
+.course-card .progress-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  color: #aaa;
+}
+
+/* 按钮 */
+.btn-primary {
+  background: linear-gradient(135deg, #4F46E5, #7C3AED);
+  color: #fff;
+  border: none;
+  border-radius: 12rpx;
+  padding: 20rpx 40rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  text-align: center;
+}
+
+.btn-outline {
+  background: #fff;
+  color: #4F46E5;
+  border: 2rpx solid #4F46E5;
+  border-radius: 12rpx;
+  padding: 18rpx 40rpx;
+  font-size: 28rpx;
+  text-align: center;
+}
+
+/* 分类标签 */
+.tag {
+  display: inline-block;
+  padding: 6rpx 16rpx;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+  margin-right: 12rpx;
+}
+
+.tag-beginner { background: #E0F2FE; color: #0369A1; }
+.tag-intermediate { background: #FEF3C7; color: #92400E; }
+.tag-advanced { background: #FCE7F3; color: #9D174D; }
+
+/* 积分显示 */
+.points-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6rpx;
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  color: #fff;
+  padding: 8rpx 20rpx;
+  border-radius: 30rpx;
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+/* 加载状态 */
+.loading-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 40rpx;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx 0;
+  color: #ccc;
+}
+
+.empty-state .icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+}
+
+.empty-state .text {
+  font-size: 28rpx;
+  color: #999;
+}

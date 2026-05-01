@@ -1,0 +1,13 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="loading-wrap"><text>加载中...</text></view>
+  <view wx:elif="{{logs.length === 0}}" class="empty-state"><text>暂无积分记录</text></view>
+  <view wx:else class="log-list">
+    <view class="log-item" wx:for="{{logs}}" wx:key="id">
+      <view class="log-info">
+        <text class="log-desc">{{item.description}}</text>
+        <text class="log-time">{{item.created_at}}</text>
+      </view>
+      <text class="log-amount {{item.amount > 0 ? 'positive' : 'negative'}}">{{item.amount > 0 ? '+' : ''}}{{item.amount}}</text>
+    </view>
+  </view>
+</view>

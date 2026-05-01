@@ -1,0 +1,20 @@
+<view class="page">
+  <view class="tabs">
+    <view class="tab {{period==='weekly'?'active':''}}" bindtap="switchPeriod" data-period="weekly">本周</view>
+    <view class="tab {{period==='monthly'?'active':''}}" bindtap="switchPeriod" data-period="monthly">本月</view>
+    <view class="tab {{period==='all'?'active':''}}" bindtap="switchPeriod" data-period="all">总榜</view>
+  </view>
+  <view wx:if="{{loading}}" class="loading-wrap"><text>加载中...</text></view>
+  <view wx:elif="{{rankList.length === 0}}" class="empty-state"><text>暂无排行数据</text></view>
+  <view wx:else class="rank-list">
+    <view class="rank-item" wx:for="{{rankList}}" wx:key="user_id || id">
+      <text class="rank-num">{{getMedal(index)}}</text>
+      <image class="rank-avatar" src="{{item.avatar || '/images/default-avatar.png'}}" mode="aspectFill" />
+      <view class="rank-info">
+        <text class="rank-name">{{item.nickname || '微信用户'}}</text>
+        <text class="rank-level">Lv.{{item.level || 1}}</text>
+      </view>
+      <text class="rank-points">{{item.points || 0}}分</text>
+    </view>
+  </view>
+</view>

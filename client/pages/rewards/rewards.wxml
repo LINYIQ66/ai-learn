@@ -1,0 +1,16 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="loading-wrap"><text>加载中...</text></view>
+  <view wx:else class="reward-list">
+    <view class="reward-card" wx:for="{{rewards}}" wx:key="id">
+      <image class="reward-img" src="{{item.image || '/images/default-avatar.png'}}" mode="aspectFill" />
+      <view class="reward-info">
+        <text class="reward-name">{{item.name}}</text>
+        <text class="reward-desc">{{item.description || ''}}</text>
+        <view class="reward-bottom">
+          <text class="reward-points">⭐ {{item.points_required}}积分</text>
+          <button class="claim-btn" bindtap="claim" data-id="{{item.id}}">兑换</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
