@@ -108,6 +108,7 @@ function request(method, url, data) {
  * Parse the unified response format: { code, data, msg }
  */
 function handleResponse(res, resolve, reject) {
+  hideLoading();
   const body = res.data;
 
   if (body && body.code === 0) {
