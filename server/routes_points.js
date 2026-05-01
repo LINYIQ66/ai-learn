@@ -189,7 +189,7 @@ router.get('/user/rewards', async (req, res) => {
 // GET /api/leaderboard - leaderboard
 router.get('/leaderboard', async (req, res) => {
   try {
-    const range = req.query.range || 'all'; // weekly, monthly, all
+    const range = req.query.range || req.query.period || 'all'; // weekly, monthly, all
     const limit = parseInt(req.query.limit) || 50;
 
     let dateFilter = '';

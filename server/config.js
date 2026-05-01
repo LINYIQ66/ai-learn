@@ -1,8 +1,8 @@
 module.exports = {
   DB: {
     host: '127.0.0.1',
-    user: 'root',
-    password: '',
+    user: 'debian-sys-maint',
+    password: '7kWuvHW9ve0Zexc5',
     database: 'ai_learn',
     waitForConnections: true,
     connectionLimit: 10,

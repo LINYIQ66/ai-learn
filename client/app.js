@@ -3,7 +3,7 @@ App({
   globalData: {
     token: '',
     userInfo: null,
-    serverUrl: 'https://ai.happysocial.xyz',
+    serverUrl: 'https://learn.happysocial.xyz',
   },
 
   onLaunch() {

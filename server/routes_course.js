@@ -3,6 +3,10 @@ const router = express.Router();
 const pool = require('./db');
 const config = require('./config');
 const auth = require('./auth');
+const { marked } = require('marked');
+
+// Configure marked for WeChat rich-text
+marked.setOptions({ breaks: true, gfm: true });
 
 // All routes need auth
 router.use(auth);
@@ -79,14 +83,36 @@ router.get('/course/detail/:id', async (req, res) => {
   }
 });
 
-// GET /api/lesson/detail/:id - lesson content (markdown)
+// GET /api/lesson/detail/:id - lesson content (HTML for rich-text)
 router.get('/lesson/detail/:id', async (req, res) => {
   try {
     const [lessons] = await pool.query('SELECT * FROM lessons WHERE id = ?', [req.params.id]);
     if (lessons.length === 0) {
       return res.status(400).json({ code: 400, msg: 'Lesson not found' });
     }
-    res.json({ code: 0, data: lessons[0], msg: 'success' });
+    const lesson = lessons[0];
+    // Convert markdown to HTML with inline styles for WeChat rich-text
+    const htmlContent = marked.parse(lesson.content || '');
+    const styled = `<style>
+      *{line-height:1.8;color:#333;word-break:break-all}
+      h2{font-size:20px;font-weight:bold;margin:20px 0 12px;color:#1a1a2e;padding-bottom:8px;border-bottom:2px solid #4F46E5}
+      h3{font-size:17px;font-weight:bold;margin:16px 0 8px;color:#333}
+      p{margin:8px 0}
+      code{background:#f0f0f0;padding:2px 6px;border-radius:4px;font-size:14px;color:#d63384}
+      pre{background:#1e1e2e;color:#cdd6f4;padding:14px;border-radius:8px;overflow-x:auto;margin:12px 0}
+      pre code{background:none;color:inherit;padding:0}
+      table{width:100%;border-collapse:collapse;margin:12px 0}
+      th{background:#4F46E5;color:#fff;padding:10px;text-align:left;font-size:14px}
+      td{padding:10px;border-bottom:1px solid #eee;font-size:14px}
+      blockquote{border-left:4px solid #4F46E5;background:#f5f3ff;padding:12px 16px;margin:12px 0;border-radius:0 8px 8px 0}
+      blockquote p{margin:4px 0}
+      ul,ol{padding-left:20px;margin:8px 0}
+      li{margin:6px 0}
+      strong{color:#1a1a2e}
+      em{color:#666}
+      hr{border:none;border-top:1px solid #eee;margin:20px 0}
+    </style>${htmlContent}`;
+    res.json({ code: 0, data: { ...lesson, content: styled }, msg: 'success' });
   } catch (err) {
     console.error('Lesson detail error:', err.message);
     res.status(500).json({ code: 500, msg: 'Internal server error' });

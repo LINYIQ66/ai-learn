@@ -6,7 +6,7 @@ Page({
     this.setData({ loading: true });
     try {
       const data = await api.request('GET', `/api/leaderboard?period=${this.data.period}`);
-      this.setData({ rankList: data.list || data || [], loading: false });
+      this.setData({ rankList: data.list || [], myRank: data.user_rank, loading: false });
     } catch (e) { this.setData({ loading: false }); }
   },
   switchPeriod(e) { const p = e.currentTarget.dataset.period; this.setData({ period: p }); this.loadLeaderboard(); },

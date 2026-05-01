@@ -153,17 +153,8 @@ function checkLogin() {
           return;
         }
 
-        // Attempt to get user profile (works for button-triggered flows;
-        // here we try wx.getUserInfo for backwards compatibility)
-        wx.getUserInfo({
-          success(userRes) {
-            doLogin(loginRes.code, userRes.userInfo, resolve, reject);
-          },
-          fail() {
-            // User may not have authorized – proceed without profile
-            doLogin(loginRes.code, null, resolve, reject);
-          }
-        });
+        // 直接登录，不获取用户信息（新版微信需要授权弹窗）
+        doLogin(loginRes.code, null, resolve, reject);
       },
       fail(err) {
         wx.showToast({ title: 'wx.login failed', icon: 'none' });
